@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Travel app</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+		<ul class="nav nav-pills nav-fill">
+			<li class="nav-item"><a class="nav-link" href="/">Journeys</a></li>
+			<li class="nav-item"><a class="nav-link active" href="/add">Add a journey</a></li>
+		</ul>
+		<h1>Add a journey</h1>
+		<form>
+			<div class="form-group">
+				<label for="title">Title</label> <input
+					type="text" class="form-control" id="title"
+					aria-describedby="title" placeholder="Enter title">
+			</div>
+			<div class="form-group">
+				<label for="comment">Comment</label> <input
+					type="password" class="form-control" id="comment"
+					placeholder="Comment">
+			</div>
+			<div class="form-group form-check">
+				<input type="checkbox" class="form-check-input" id="exampleCheck1">
+				<label class="form-check-label" for="exampleCheck1">Check me
+					out</label>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</body>
+</html>

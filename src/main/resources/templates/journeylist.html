@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Travel app</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+		<ul class="nav nav-pills nav-fill">
+			<li class="nav-item"><a class="nav-link active" href="/">Journeys</a></li>
+			<li class="nav-item"><a class="nav-link" href="/add">Add a journey</a></li>
+		</ul>
+		<h1>Travel-app</h1>
+		<div th:each="journey: ${journeys}">
+			<div class="card" style="width: 18rem;">
+				<img class="card-img-top" src="https://via.placeholder.com/150"
+					alt="Card image cap">
+				<div class="card-body">
+					<h5 th:text="${journey.title}" class="card-title"></h5>
+					<p th:text="${journey.comment}" class="card-text"></p>
+					<p th:text="'Arvosana: '+${journey.grade}" class="card-text"></p>
+					<a href="#" class="btn btn-primary">View details</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
