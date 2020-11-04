@@ -29,6 +29,6 @@ public class TravelAppApplication implements CommandLineRunner {
 	
 	@Override
 	  public void run(String... args) throws Exception {
-		
+		journeyRepository.deleteAll();
 	  }
 }
