@@ -1,77 +1,50 @@
 package com.example.travelapp.domain;
 
-import java.time.LocalDate;
 import org.springframework.data.annotation.Id;
 
 public class Journey {
 	@Id
 	private String id;
 	private String title;
-	private LocalDate startDate;
-	private LocalDate endDate;
-	private String comment;
-	private int grade;
-
-	public Journey(String title, LocalDate startDate, LocalDate endDate, String comment, int grade) {
+	private Picture picture;
+	
+	public Journey() {
+		super();
+	}
+	
+	public Journey(String title, Picture picture) {
 		super();
 		this.title = title;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.comment = comment;
-		this.grade = grade;
+		this.picture = picture;
 	}
-
+	
+	public Journey(String title) {
+		super();
+		this.title = title;
+	}
+	
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	public LocalDate getStartDate() {
-		return startDate;
+	public Picture getPicture() {
+		return picture;
 	}
-
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-
-	public LocalDate getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public int getGrade() {
-		return grade;
-	}
-
-	public void setGrade(int grade) {
-		this.grade = grade;
+	public void setPicture(Picture picture) {
+		this.picture = picture;
 	}
 
 	@Override
 	public String toString() {
-		return "Journey [id=" + id + ", title=" + title + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", grade=" + grade + "]";
+		return "Journey [id=" + id + ", title=" + title + ", picture=" + picture + "]";
 	}
+	
 }
