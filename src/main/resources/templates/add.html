@@ -18,7 +18,7 @@
 		</ul>
 
 		<h1>Add a journey</h1>
-		<form method="POST" enctype="multipart/form-data" action="/add">
+		<form method="POST" enctype="multipart/form-data" action="/storage/uploadFile">
 			<div th:object="${journey}">
 				<p>title</p>
 				<input type="text" name="title" th:field="${journey.title}" />

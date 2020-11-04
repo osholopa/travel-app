@@ -6,12 +6,12 @@ import org.springframework.data.annotation.Id;
 public class Picture {
 	@Id
 	private Long pictureId;
-	private String name;
+	private String url;
 	
 	public Picture() {}
 	
-	public Picture( String name) {
-		this.name = name;
+	public Picture( String url) {
+		this.url = url;
 	}
 
 	public Long getPictureId() {
@@ -22,21 +22,16 @@ public class Picture {
 		this.pictureId = pictureId;
 	}
 
-	public String getName() {
-		return name;
+	public String getUrl() {
+		return url;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	@Override
 	public String toString() {
-		return "Picture [pictureId=" + pictureId + ", name=" + name + "]";
+		return "Picture [pictureId=" + pictureId + ", url=" + url + "]";
 	}
-
-	
-
-	
-
-	
 }
