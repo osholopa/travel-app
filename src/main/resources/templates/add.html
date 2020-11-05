@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<div th:if="${message}">
-			<h2 th:text="${message}" />
+			<h2 th:text="${message}"></h2>
 		</div>
 		<ul class="nav nav-pills nav-fill">
 			<li class="nav-item"><a class="nav-link" href="/">Journeys</a></li>
@@ -20,12 +20,23 @@
 		<h1>Add a journey</h1>
 		<form method="POST" enctype="multipart/form-data" action="/storage/uploadFile">
 			<div th:object="${journey}">
-				<p>title</p>
+				<p>Title</p>
 				<input type="text" name="title" th:field="${journey.title}" />
+				<br>
+				<p>Date</p>
+				<input type="date" th:value="*{date}" th:field="*{date}" />
+				<br>
+				<p>Description</p>
+				<input type="text" th:value="*{description}" th:field="*{description}" />
+				<br>
+				<p>Grade (1-5)</p>
+				<input type="number" th:value="*{grade}" th:field="*{grade}" />
+				<br>
 			</div>
 			<div>
-				<p>picture</p>
+				<p>Picture</p>
 				<input type="file" name="file" />
+				<br>
 			</div>
 			<button type="submit">Submit</button>
 		</form>

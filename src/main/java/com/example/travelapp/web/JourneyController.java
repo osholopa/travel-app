@@ -23,7 +23,7 @@ public class JourneyController {
 	public String journeyList(Model model) {
 		
 		List<Journey> journeys = journeyRepository.findAll();
-		List<Picture> pictures = new ArrayList();
+		List<Picture> pictures = new ArrayList<Picture>();
 		
 		for(Journey journey: journeys) {
 			if(journey.getPicture() == null) {
