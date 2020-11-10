@@ -38,9 +38,8 @@ public class BucketController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteJourney(@PathVariable("id") String id, Model model) {
     	Journey journey = journeyRepository.findById(id).get();
-        String msg = this.amazonClient.deleteFileFromS3Bucket(journey.getPicture().getUrl());
+        this.amazonClient.deleteFileFromS3Bucket(journey.getPicture().getUrl());
         journeyRepository.deleteById(id);
-        model.addAttribute("msg", msg);
-        return "journeylist";
+        return "redirect:/";
     }
 }

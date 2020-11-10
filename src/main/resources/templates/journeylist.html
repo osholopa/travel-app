@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<title>Travel app</title>
+<title>Matkailu-app</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,21 +12,20 @@
 <body>
 	<div class="container">
 		<ul class="nav nav-pills nav-fill">
-			<li class="nav-item"><a class="nav-link active" href="/">Journeys</a></li>
-			<li class="nav-item"><a class="nav-link" href="/addjourney">Add
-					a journey</a></li>
+			<li class="nav-item"><a class="nav-link active" href="/">Matkat</a></li>
+			<li class="nav-item"><a class="nav-link" href="/addjourney">Lisää matka</a></li>
 			<li class="nav-item" sec:authorize="!isAuthenticated()"><a
-				class="nav-link" href="/login">Sign in</a></li>
+				class="nav-link" href="/login">Kirjaudu sisään</a></li>
 			<li class="nav-item" sec:authorize="isAuthenticated()">
 				<form th:action="@{/logout}" method="post">
-					<input class="btn" type="submit" value="Sign Out" />
+					<input class="btn" type="submit" value="Kirjaudu ulos" />
 				</form>
 			</li>
 		</ul>
 		<div th:if="${msg}">
 			<p class="bg-success" th:text="${msg}"></p>
 		</div>
-		<h1>Travel-app</h1>
+		<h1>Matkailu-app</h1>
 		<div class="row">
 			<div class="col-md-4" th:each="journey,iterStat: ${journeys}">
 				<div class="card mb-4 shadow-sm">

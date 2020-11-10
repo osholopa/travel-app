@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<title>Travel app</title>
+<title>Matkailu-app</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,42 +17,42 @@
 		<ul class="nav nav-pills nav-fill">
 			<li class="nav-item"><a class="nav-link" href="/">Journeys</a></li>
 			<li class="nav-item"><a class="nav-link active"
-				href="/addjourney">Add a journey</a></li>
+				href="/addjourney">Lisää matka</a></li>
 			<li class="nav-item" sec:authorize="isAuthenticated()">
 				<form th:action="@{/logout}" method="post">
-					<input class="btn" type="submit" value="Sign Out" />
+					<input class="btn" type="submit" value="Kirjaudu Ulos" />
 				</form>
 			</li>
 		</ul>
 
-		<h1>Add a journey</h1>
+		<h1>Lisää matka</h1>
 		<form method="POST" enctype="multipart/form-data"
 			action="/storage/uploadFile">
 			<div th:object="${journey}">
 				<div class="form-group">
-					<label for="title">Title:</label> <input id="title" type="text"
+					<label for="title">Otsikko:</label> <input id="title" type="text"
 						name="title" th:field="${journey.title}" />
 				</div>
 				<div class="form-group">
-					<label for="date">Date:</label> <input id="date" type="date"
+					<label for="date">Päivämäärä:</label> <input id="date" type="date"
 						th:value="*{date}" th:field="*{date}" />
 				</div>
 				<div class="form-group">
-					<label for="description">Description:</label> <input
+					<label for="description">Kuvaus:</label> <input
 						id="description" type="text" th:value="*{description}"
 						th:field="*{description}" />
 				</div>
 				<div class="form-group">
-					<label for="description">Grade (1-5):</label> <input id="grade"
+					<label for="description">Arvosana (1-5):</label> <input id="grade"
 						type="number" min="1" max="5" th:value="*{grade}" th:field="*{grade}" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="picture">Picture:</label> <input id="picture" type="file"
+				<label for="picture">Kuva (Alle 1 MB tiedosto):</label> <input id="picture" type="file"
 					name="file" /> <input type="hidden"
 					th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			</div>
-			<button class="btn btn-primary" type="submit">Submit</button>
+			<button class="btn btn-primary" type="submit">Lisää</button>
 		</form>
 	</div>
 </body>

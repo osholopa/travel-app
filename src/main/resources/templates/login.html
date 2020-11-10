@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Travel app</title>
+<title>Matkailu-app</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,18 +16,18 @@
 </head>
 <body>
 	<div class="center-div">
-		<h1>Travel app</h1>
-		<div style="color: red;" th:if="${param.error}">Invalid username and password</div>
+		<h1>Matkailu-app</h1>
+		<div style="color: red;" th:if="${param.error}">Virheellinen käyttäjätunnus tai salasana</div>
 		<form th:action="@{/login}" method="post">
 			<div class="form-group">
-				<label for="username">Username</label> <input type="text"
+				<label for="username">Käyttäjätunnus</label> <input type="text"
 					class="form-control" id="username" name="username" aria-describedby="username">
 			</div>
 			<div class="form-group">
-				<label for="password">Password</label> <input type="password"
+				<label for="password">Salasana</label> <input type="password"
 					class="form-control" id="password" name="password">
 			</div>
-			<button type="submit" class="btn btn-primary bg-success">Log in</button>
+			<button type="submit" class="btn btn-primary bg-success">Kirjaudu sisään</button>
 		</form>
 	</div>
 </body>
