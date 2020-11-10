@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Travel app</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+<style>
+.center-div {
+	margin: 40px auto;
+	width: 20%
+}
+</style>
+</head>
+<body>
+	<div class="center-div">
+		<h1>Travel app</h1>
+		<div style="color: red;" th:if="${param.error}">Invalid username and password</div>
+		<form th:action="@{/login}" method="post">
+			<div class="form-group">
+				<label for="username">Username</label> <input type="text"
+					class="form-control" id="username" name="username" aria-describedby="username">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label> <input type="password"
+					class="form-control" id="password" name="password">
+			</div>
+			<button type="submit" class="btn btn-primary">Log in</button>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Travel app</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
 </head>
@@ -15,6 +16,11 @@
 			<li class="nav-item"><a class="nav-link" href="/">Journeys</a></li>
 			<li class="nav-item"><a class="nav-link active"
 				href="/addjourney">Add a journey</a></li>
+			<li sec:authorize="isAuthenticated()">
+				<form th:action="@{/logout}"method="post">
+					<input class="nav-link" type="submit" value="Sign Out"/>
+				</form>
+			</li>
 		</ul>
 
 		<h1>Add a journey</h1>
