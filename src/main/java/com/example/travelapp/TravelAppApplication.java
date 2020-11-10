@@ -29,12 +29,12 @@ public class TravelAppApplication {
 			repository.save(new Journey("Loma pyynikillä", LocalDate.parse("2020-10-14"),
 					new Picture("https://osholopa-travel-app.s3.eu-north-1.amazonaws.com/1604520516125-pyynikki.jpg"),
 					"Syntymäpäiviä viettämässä pyynikinharjulla", 5));
-			
+
 			urepository.deleteAll();
-			User user1 = new User("user", "$2a$10$48/aIQTZi5Fz8oPcD3T1wuPmJRqP3BLR0tnW5zW8YoUUiIi9fMxSa", "USER");
+			User user1 = new User("user", "$2a$10$gRmDr.nCFC/4cRhScQ.D1.L5/ili0Q0DkFK2SMAM4yi5iLOByW1pK", "USER");
 			urepository.save(user1);
-			
-			System.out.println("FOUND USER: " + urepository.findByUsername("user").getUsername());
+
+			System.out.println("1 USER SAVED: " + urepository.findByUsername("user").getUsername());
 		};
 	}
 

@@ -13,9 +13,9 @@
 			<li class="nav-item"><a class="nav-link active" href="/">Journeys</a></li>
 			<li class="nav-item"><a class="nav-link" href="/addjourney">Add
 					a journey</a></li>
-			<li sec:authorize="isAuthenticated()">
+			<li class="nav-item" sec:authorize="isAuthenticated()">
 				<form th:action="@{/logout}"method="post">
-					<input class="nav-link" type="submit" value="Sign Out"/>
+					<input class="btn" type="submit" value="Sign Out"/>
 				</form>
 			</li>
 		</ul>

@@ -29,8 +29,7 @@ public class Journey {
 		this.title = title;
 		this.date = date;
 		this.picture = picture;	
-		this.description = description;
-		this.grade = grade;
+		this.description = description;	
 	}
 	
 	public String getDescription() {
@@ -46,12 +45,6 @@ public class Journey {
 	}
 
 	public void setGrade(int grade) {
-		if(grade > 5) {
-			this.grade = 5;
-		}
-		if(grade < 0) {
-			this.grade = 1;
-		}
 		this.grade = grade;
 	}
 

@@ -24,9 +24,9 @@ public class BucketController {
 
     @PostMapping("/uploadFile")
     public String uploadFile(@RequestParam("file") MultipartFile file, Journey journey) {
-        //String imageUrl = this.amazonClient.uploadFile(file);
-        //journey.setPicture(new Picture(imageUrl));
-        journey.setPicture(new Picture("https://osholopa-travel-app.s3.eu-north-1.amazonaws.com/1604520516125-pyynikki.jpg"));
+        String imageUrl = this.amazonClient.uploadFile(file);
+        journey.setPicture(new Picture(imageUrl));
+        //journey.setPicture(new Picture("https://osholopa-travel-app.s3.eu-north-1.amazonaws.com/1604520516125-pyynikki.jpg"));
     	journeyRepository.save(journey); 	
 		return "redirect:/";
     }

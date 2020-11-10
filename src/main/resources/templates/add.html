@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Travel app</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
 </head>
@@ -16,35 +18,41 @@
 			<li class="nav-item"><a class="nav-link" href="/">Journeys</a></li>
 			<li class="nav-item"><a class="nav-link active"
 				href="/addjourney">Add a journey</a></li>
-			<li sec:authorize="isAuthenticated()">
-				<form th:action="@{/logout}"method="post">
-					<input class="nav-link" type="submit" value="Sign Out"/>
+			<li class="nav-item" sec:authorize="isAuthenticated()">
+				<form th:action="@{/logout}" method="post">
+					<input class="btn" type="submit" value="Sign Out" />
 				</form>
 			</li>
 		</ul>
 
 		<h1>Add a journey</h1>
-		<form method="POST" enctype="multipart/form-data" action="/storage/uploadFile">
+		<form method="POST" enctype="multipart/form-data"
+			action="/storage/uploadFile">
 			<div th:object="${journey}">
-				<p>Title</p>
-				<input type="text" name="title" th:field="${journey.title}" />
-				<br>
-				<p>Date</p>
-				<input type="date" th:value="*{date}" th:field="*{date}" />
-				<br>
-				<p>Description</p>
-				<input type="text" th:value="*{description}" th:field="*{description}" />
-				<br>
-				<p>Grade (1-5)</p>
-				<input type="number" th:value="*{grade}" th:field="*{grade}" />
-				<br>
+				<div class="form-group">
+					<label for="title">Title:</label> <input id="title" type="text"
+						name="title" th:field="${journey.title}" />
+				</div>
+				<div class="form-group">
+					<label for="date">Date:</label> <input id="date" type="date"
+						th:value="*{date}" th:field="*{date}" />
+				</div>
+				<div class="form-group">
+					<label for="description">Description:</label> <input
+						id="description" type="text" th:value="*{description}"
+						th:field="*{description}" />
+				</div>
+				<div class="form-group">
+					<label for="description">Grade (1-5):</label> <input id="grade"
+						type="number" min="1" max="5" th:value="*{grade}" th:field="*{grade}" />
+				</div>
 			</div>
-			<div>
-				<p>Picture</p>
-				<input type="file" name="file" />
-				<br>
+			<div class="form-group">
+				<label for="picture">Picture:</label> <input id="picture" type="file"
+					name="file" /> <input type="hidden"
+					th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			</div>
-			<button type="submit">Submit</button>
+			<button class="btn btn-primary" type="submit">Submit</button>
 		</form>
 	</div>
 </body>
