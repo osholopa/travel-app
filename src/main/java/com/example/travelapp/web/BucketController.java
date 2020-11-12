@@ -3,7 +3,6 @@
 import com.example.travelapp.domain.Journey;
 import com.example.travelapp.domain.JourneyRepository;
 import com.example.travelapp.domain.Picture;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -24,16 +23,18 @@ public class BucketController {
     BucketController(AmazonClient amazonClient) {
         this.amazonClient = amazonClient;
     }
-
+    
+    //User feature to post journey entries to DB and their images to AWS
     @PostMapping("/uploadFile")
-    public String uploadFile(@RequestParam("file") MultipartFile file, Journey journey) {
+    public String uploadFileProd(@RequestParam("file") MultipartFile file, Journey journey) {
         String imageUrl = this.amazonClient.uploadFile(file);
         journey.setPicture(new Picture(imageUrl));
         //journey.setPicture(new Picture("https://via.placeholder.com/225/225"));
     	journeyRepository.save(journey); 	
 		return "redirect:/";
     }
-
+    
+    //Admin feature to delete entries
     @GetMapping("/deleteJourney/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteJourney(@PathVariable("id") String id, Model model) {

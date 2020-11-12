@@ -25,15 +25,18 @@ public class TravelAppApplication {
 	@Profile("dev")
 	public CommandLineRunner init(JourneyRepository repository, UserRepository urepository) {
 		return (args) -> {
+			//Delete all database entries
 			repository.deleteAll();
-			repository.save(new Journey("Loma pyynikillä", LocalDate.parse("2020-10-14"),
-					new Picture("https://osholopa-travel-app.s3-eu-north-1.amazonaws.com/1604524616439-thaimaa.PNG"),
-					"Testiloma thaimaassa", 3));
+			//Create a placeholder entry
+			repository.save(new Journey("Placeholder journey", LocalDate.parse("2020-10-14"),
+					new Picture("https://via.placeholder.com/225/225"),
+					"Placeholder journey with placeholder img", 3));
 
+			//Delete all database user entries and create a couple of users
 			urepository.deleteAll();
-			User user1 = new User("user", "$2a$10$gRmDr.nCFC/4cRhScQ.D1.L5/ili0Q0DkFK2SMAM4yi5iLOByW1pK", "USER");
+			User user1 = new User("user", "$2a$10$YFMA9xzqQg67RorPDo3bkO/BDfEOpT9J1lm3ex86GiNatR0hgqxSi", "USER");
 			urepository.save(user1);
-			User user2 = new User("admin", "$2a$10$lN5xX8pSB5qqTiPcWV773e/aLb.N8CzFyz3m3hqA1A/gSArBFLKdO", "ADMIN");
+			User user2 = new User("admin", "$2a$10$hqzO5aZYD5lHSvT7o59s9.ZPuNP6m1RoI.7G.CMGzpOwiJuhUq2Ze", "ADMIN");
 			urepository.save(user2);
 		};
 	}

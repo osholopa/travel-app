@@ -36,41 +36,46 @@ public class AmazonClient {
 		AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
 		this.s3client = new AmazonS3Client(credentials);
 	}
-	
-	  public String uploadFile(MultipartFile multipartFile) {
-	        String fileUrl = "";
-	        try {
-	            File file = convertMultiPartToFile(multipartFile);
-	            String fileName = generateFileName(multipartFile);
-	            fileUrl = endpointUrl + fileName;
-	            uploadFileTos3bucket(fileName, file);
-	            file.delete();
-	        } catch (Exception e) {
-	           e.printStackTrace();
-	        }
-	        return fileUrl;
-	    }
 
-	    private File convertMultiPartToFile(MultipartFile file) throws IOException {
-	        File convFile = new File(file.getOriginalFilename());
-	        FileOutputStream fos = new FileOutputStream(convFile);
-	        fos.write(file.getBytes());
-	        fos.close();
-	        return convFile;
-	    }
+	// Convert file, upload it and catch possible errors
+	public String uploadFile(MultipartFile multipartFile) {
+		String fileUrl = "";
+		try {
+			File file = convertMultiPartToFile(multipartFile);
+			String fileName = generateFileName(multipartFile);
+			fileUrl = endpointUrl + fileName;
+			uploadFileTos3bucket(fileName, file);
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return fileUrl;
+	}
 
-	    private String generateFileName(MultipartFile multiPart) {
-	        return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
-	    }
+	// Convert MultipartFile to File
+	private File convertMultiPartToFile(MultipartFile file) throws IOException {
+		File convFile = new File(file.getOriginalFilename());
+		FileOutputStream fos = new FileOutputStream(convFile);
+		fos.write(file.getBytes());
+		fos.close();
+		return convFile;
+	}
 
-	    private void uploadFileTos3bucket(String fileName, File file) {
-	        s3client.putObject(new PutObjectRequest(bucketName, fileName, file)
-	                .withCannedAcl(CannedAccessControlList.PublicRead));
-	    }
+	// Generate file name for unique aws url
+	private String generateFileName(MultipartFile multiPart) {
+		return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
+	}
 
-	    public String deleteFileFromS3Bucket(String fileUrl) {
-	        String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-	        s3client.deleteObject(new DeleteObjectRequest(bucketName, fileName));
-	        return "Successfully deleted";
-	    }
+	// Perform upload
+	private void uploadFileTos3bucket(String fileName, File file) {
+		s3client.putObject(
+				new PutObjectRequest(bucketName, fileName, file).withCannedAcl(CannedAccessControlList.PublicRead));
+	}
+
+	// Delete file from bucket
+	public String deleteFileFromS3Bucket(String fileUrl) {
+		String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+		s3client.deleteObject(new DeleteObjectRequest(bucketName, fileName));
+		return "Successfully deleted";
+	}
 }
